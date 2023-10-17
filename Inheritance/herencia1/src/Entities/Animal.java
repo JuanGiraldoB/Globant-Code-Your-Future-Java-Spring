@@ -6,6 +6,9 @@ public class Animal {
     protected Integer edad;
     protected String raza;
 
+    public Animal() {
+    }
+
     public Animal(String name, String alimento, Integer edad, String raza) {
         this.name = name;
         this.alimento = alimento;

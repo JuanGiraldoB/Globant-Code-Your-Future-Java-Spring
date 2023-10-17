@@ -5,6 +5,35 @@ SELECT * FROM estadisticas;
 SELECT * FROM jugadores;
 SELECT * FROM partidos;
 
+-- integrador
+
+
+-- 1) Posición: El candado A está ubicado en la posición calculada a partir del número obtenido en la/s
+-- 		siguiente/s consulta/s:
+-- Teniendo el máximo de asistencias por partido, muestre cuantas veces se logró dicho máximo.
+SELECT COUNT(*) AS veces_maximo_asistencias
+FROM estadisticas
+WHERE Asistencias_por_partido = (
+  SELECT MAX(Asistencias_por_partido)
+  FROM estadisticas
+);
+
+-- Clave: La clave del candado A estará con formada por la/s siguientes consulta/s a la base de
+-- 	datos:
+-- Muestre la suma total del peso de los jugadores, donde la conferencia sea Este y la posición sea
+-- centro o esté comprendida en otras posiciones.
+SELECT SUM(Peso) AS suma_peso
+FROM jugadores
+WHERE Nombre_equipo IN (
+  SELECT Nombre
+  FROM equipos
+  WHERE Conferencia = 'East'
+)
+AND posicion LIKE '%C%';
+
+
+
+
 -- 1) Mostrar el nombre de todos los jugadores ordenados alfabéticamente.
 SELECT nombre FROM jugadores
 ORDER BY nombre;
